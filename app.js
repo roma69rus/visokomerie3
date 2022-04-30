@@ -37,29 +37,30 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 
-app.get('/country', function (req, res) {
-  connection.query('select * from country', function (error, results, fields) {
-   if (error) throw error;
-   res.end(JSON.stringify(results));
- });
+var connection = mysql.createPool({
+  host     : 'localhost',
+  user     : 'admin',
+  password : '2sdfTY78(',
+  database : 'visokomerie'
 });
 
-
-1
-2
-3
-4
-5
-6
-7
-//rest api to get a single customer data
-app.get('/country/:id', function (req, res) {
-   connection.query('select * from country where Code=?', [req.params.id], function (error, results, fields) {
-	  if (error) throw error;
-	  res.end(JSON.stringify(results));
-	});
-  console.log('req111', req)
+app.get('/', function (req, res) {
+  connection.query('select p.id, p.name, p.price, img.path from visokomerie.product p left join visokomerie.product_image img on p.id = img.item_id ', 
+  function (error, results, fields) {
+    if (error) throw error;
+    // console.log('CONNECT1', results)
+    let product = {};
+    for (let i = 0; i < results.length; i++) {
+      product[results[i]['id']] = results[i];     
+    }  
+    console.log('123', JSON.parse(JSON.stringify(product)));
+    res.render('index', {
+      product: JSON.parse(JSON.stringify(product))
+    });
+  });
+ 
 });
+
 
 
 app.use('/', indexRouter);
@@ -81,18 +82,13 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'admin',
-  password : '2sdfTY78(',
-  database : 'world'
-});
+
  
  
-connection.connect(function(err) {
-  if (err) throw err
-  console.log('You are now connected with mysql database...')
-})
+// connection.connect(function(err) {
+//   if (err) throw err
+//   console.log('You are now connected with mysql database...')
+// })
 
 
 
