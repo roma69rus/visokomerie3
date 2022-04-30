@@ -1,4 +1,4 @@
-extends layout
+extends components/layout
 
 block content
   each val, index in product 
@@ -7,3 +7,5 @@ block content
       src=val['path']
       class = "test"
     )
+block footer 
+  include components/footer.pug
