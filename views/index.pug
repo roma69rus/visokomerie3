@@ -1,11 +1,30 @@
-extends components/layout
-
-block content
-  each val, index in product 
-    p #{val['name']}
-    img(
-      src=val['path']
-      class = "test"
-    )
+extends components/layout.pug
+block header 
+  include components/header.pug
+block main 
+  main
+    section.hero
+      h1.visually-hidden Безупречные брюки на ваш рост 
+      .container.hero__container
+        .hero-content
+        .swiper-container
+          .swiper-wrapper
+            //- each val, index in slide 
+            //-   .swiper-slide(style='background-image: url(' + val[img_path] + ');')
+            //-     button.hero-content__btn.site-btn(onclick="window.location.href='#'") MUST HAVE
+          .swiper-pagination
+    section.featured.container
+      h2.featured__heading Безупречные брюки на ваш рост      
+      ul.featured__list
+        each val, index in product 
+          li.featured__item
+            .featured__item_imgwrapper
+              a(href='')
+                img.featured__item_img(src=val['path'])
+            h3.featured__item_heading #{val['name']}
+            p.featured__item_text #{val['product_color']}
+            p.featured__item_price #{val['price']}
 block footer 
   include components/footer.pug
+  script(src='https://unpkg.com/swiper/swiper-bundle.min.js')
+  script(src='javascripts/script.js')

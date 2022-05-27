@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql2');
-const sassMiddleware = require('node-sass-middleware');
 var bodyParser = require('body-parser');
 
 
@@ -16,15 +15,6 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
-app.use(sassMiddleware({
-  /* Options */
-  src: __dirname + "/scss",
-  dest: path.join(__dirname, 'public'),
-  debug: true,
-  outputStyle: 'compressed',
-  prefix:  ''  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
-}));
 
 
 app.use(logger('dev'));
@@ -45,8 +35,65 @@ var connection = mysql.createPool({
 });
 
 app.get('/', function (req, res) {
-  connection.query('select p.id, p.name, p.price, img.path from visokomerie.product p left join visokomerie.product_image img on p.id = img.item_id ', 
-  function (error, results, fields) {
+  const DBquery = 'select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.`path`, img.main_image ' +
+  'from visokomerie.product_options opt ' +
+  'left join visokomerie.product p ' +
+  'on p.id = opt.product_id ' +
+  'left join visokomerie.product_options_image img ' +
+  'on opt.id = img.option_id ' +
+  'where img.main_image = "1" and p.id in ' +
+    '(select p.id ' +
+    'from product p, product_category pc, products_to_categories ptc ' +
+    'where pc.id = ptc.category_id ' +
+    'and ptc.product_id = p.id ' +
+    'and pc.name = "БРЮКИ") ' +
+  'order by opt.`order`';
+
+  connection.query(DBquery, function (error, results, fields) {
+    if (error) throw error;
+    // console.log('CONNECT1', results)
+    let product = {};
+    for (let i = 0; i < results.length; i++) {
+      product[results[i]['id']] = results[i];     
+    }  
+    console.log('1234', JSON.parse(JSON.stringify(product)));
+    res.render('index', {
+      product: JSON.parse(JSON.stringify(product))
+    });
+  });
+
+  // connection.query("select * from visokomerie.slider", function (error, results, fields) {
+  //   if (error) throw error;    
+  //   let slide = {};
+  //   for (let i = 0; i < results.length; i++) {
+  //     slide[results[i]['id']] = results[i];     
+  //   }  
+  //   console.log('slide', JSON.parse(JSON.stringify(slide)));
+  //   res.render('index', {
+  //     slide: JSON.parse(JSON.stringify(slide))
+  //   });
+  // });
+ 
+});
+
+
+
+app.get('/indexx', function (req, res) {
+  const DBquery = 'select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.`path`, img.main_image ' +
+  'from visokomerie.product_options opt ' +
+  'left join visokomerie.product p ' +
+  'on p.id = opt.product_id ' +
+  'left join visokomerie.product_options_image img ' +
+  'on opt.id = img.option_id ' +
+  'where img.main_image = "1" and p.id in ' +
+    '(select p.id ' +
+    'from product p, product_category pc, products_to_categories ptc ' +
+    'where pc.id = ptc.category_id ' +
+    'and ptc.product_id = p.id ' +
+    'and pc.name = "БРЮКИ") ' +
+  'order by opt.`order`';
+
+  connection.query(DBquery, function (error, results, fields) {
     if (error) throw error;
     // console.log('CONNECT1', results)
     let product = {};
@@ -54,17 +101,17 @@ app.get('/', function (req, res) {
       product[results[i]['id']] = results[i];     
     }  
     console.log('123', JSON.parse(JSON.stringify(product)));
-    res.render('index', {
+    res.render('indexx', {
       product: JSON.parse(JSON.stringify(product))
     });
-  });
- 
+  }); 
 });
 
 
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/indexx', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -89,8 +136,6 @@ app.use(function(err, req, res, next) {
 //   if (err) throw err
 //   console.log('You are now connected with mysql database...')
 // })
-
-
 
 module.exports = app;
 app.listen(3000);
