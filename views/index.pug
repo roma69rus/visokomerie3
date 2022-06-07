@@ -9,14 +9,19 @@ block main
         .hero-content
         .swiper-container
           .swiper-wrapper
-            //- each val, index in slide 
-            //-   .swiper-slide(style='background-image: url(' + val[img_path] + ');')
-            //-     button.hero-content__btn.site-btn(onclick="window.location.href='#'") MUST HAVE
+            each item in slide 
+              if item['IsVideo']
+                .swiper-slide
+                  video#video.video(preload='metadata' loop muted autoplay playsinline)                              
+                    source(src = item['img_path'] type="video/mp4")                           
+              else 
+                .swiper-slide(style='background-image: url(' + item['img_path'] + ');')
+                  button.hero-content__btn.site-btn(onclick="window.location.href='#'") MUST HAVE
           .swiper-pagination
     section.featured.container
       h2.featured__heading Безупречные брюки на ваш рост      
       ul.featured__list
-        each val, index in product 
+        each val in product 
           li.featured__item
             .featured__item_imgwrapper
               a(href='')

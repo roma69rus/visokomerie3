@@ -1,0 +1,22 @@
+extends components/layout.pug
+block header 
+  include components/header.pug
+block main 
+  main
+    section.catalog.container
+      each cat in categories
+        h2.catalog__heading #{cat['name']}
+        p.catalog__text #{cat['description']}          
+        ul.catalog__list
+          each item in products 
+            if item['category_id']==cat['id']
+              li.catalog__item
+                .catalog__item_imgwrapper
+                  a(href='#')
+                    img.catalog__item_img(src=item['path'] alt=item['name'])
+                h3.catalog__item_heading #{item['name']}
+                p.catalog__item_text #{item['product_color']}
+                p.catalog__item_price #{item['price']}
+block footer 
+  include components/footer.pug
+  script(src='javascripts/script.js')
