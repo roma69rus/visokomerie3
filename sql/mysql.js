@@ -101,7 +101,7 @@ exports.getCatalogAllProducts = function () {
 
 exports.getProduct = function () {
     return new Promise(function (resolve, reject) {        
-        const DBquery = 'select po.product_id, po.id as option_id, p.name, p.price + po.price_increase as price, po.product_color, p.description '+
+        const DBquery = 'select po.product_id, po.id as option_id, p.name, p.price + po.price_increase as price, po.product_color, po.description, p.sizetable_path '+
                         'from visokomerie.product_options po ' +
                         'left join visokomerie.product p '+
                         'on po.product_id = p.id '+

@@ -20,8 +20,7 @@ block main
           input#info__body_1.info__switch(type='checkbox')
           label.info__headline(for='info__body_1') Описание, состав
           .info__body-text !{product['0']['description']}
-          //- | <div class="info__body-text"> !{product['0']['description']} </div> вставка html
-            
+          //- | <div class="info__body-text"> !{product['0']['description']} </div> вставка html            
         p.product__order-info
           | Для того, чтобы брюки сидели на вас безупречно и были идеальной длины, мы поможем вам определить размер после оформления заказа в WhatsApp.
         .product__addtocart.js-open-modal(data-modal='2' data-id='1' data-img='/img/1_black_leather/1_black_leather.JPG')
@@ -46,11 +45,9 @@ block main
             path(d='M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z')
           p.modal__title Таблица размеров
           .modal__img-wrapper
-            img.modal__img(src='/img/leather-size-table.jpg' alt='')
+            img.modal__img(src=product['0']['sizetable_path'] alt='')
         // Подложка под модальным окном
         #overlay-modal.modal_overlay
-
-
 block footer 
   include components/footer.pug
   script(src='https://unpkg.com/swiper/swiper-bundle.min.js')
