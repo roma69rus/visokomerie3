@@ -109,7 +109,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use('/', indexRouter);
 app.use('/catalog', catalogRouter);
 app.use('/users', usersRouter);
-app.use('/product', productsRouter);
+app.use('/products', productsRouter);
+// app.use('/products', productsRouter);
 // app.use('/indexx', indexRouter);
 
 // catch 404 and forward to error handler

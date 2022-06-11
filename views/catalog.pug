@@ -12,11 +12,11 @@ block main
             if item['category_id']==cat['id']
               li.catalog__item
                 .catalog__item_imgwrapper
-                  a(href='#')
+                  a(href='/products/'+item['slug']+'?color='+item['product_color'])
                     img.catalog__item_img(src=item['path'] alt=item['name'])
                 h3.catalog__item_heading #{item['name']}
                 p.catalog__item_text #{item['product_color']}
                 p.catalog__item_price #{item['price']}
 block footer 
   include components/footer.pug
-  script(src='javascripts/script.js')
+  script(src='/javascripts/script.js')

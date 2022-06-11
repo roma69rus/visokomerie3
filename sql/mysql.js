@@ -31,7 +31,7 @@ function getQuery (sql) {
 
 exports.getMainPageProducts = function () {
     return new Promise(function (resolve, reject) {        
-        const DBquery = 'select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.`path`, img.main_image ' +
+        const DBquery = 'select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.`path`, img.main_image, p.slug ' +
                         'from visokomerie.product_options opt ' +
                         'left join visokomerie.product p ' +
                         'on p.id = opt.product_id ' +
@@ -48,7 +48,9 @@ exports.getMainPageProducts = function () {
             resolve(result)
         })
         .catch(function(err){        
-            reject(console.log(err))             
+            reject(function(err){
+                if (err) throw err;
+            })             
         })
             
     });
@@ -61,7 +63,9 @@ exports.getSlider = function () {
             resolve(result)
         })
         .catch(function(err){        
-            reject(console.log(err))             
+            reject(function(err){
+                if (err) throw err;
+            })             
         })
     });
 };
@@ -74,14 +78,16 @@ exports.getCatalogCategories = function () {
             resolve(result)
         })
         .catch(function(err){        
-            reject(console.log(err))             
+            reject(function(err){
+                if (err) throw err;
+            })             
         })
     });
 };
 
 exports.getCatalogAllProducts = function () {
     return new Promise(function (resolve, reject) {        
-        const DBquery = 'select ptc.category_id, po.id as product_id, p.name, po.product_color, p.price + po.price_increase as price, poi.`path` '+
+        const DBquery = 'select ptc.category_id, po.id as product_id, p.name, po.product_color, p.price + po.price_increase as price, poi.`path`, p.slug '+
         'from visokomerie.product p '+
         'left join visokomerie.products_to_categories ptc '+
         'on ptc.product_id = p.id '+
@@ -94,39 +100,55 @@ exports.getCatalogAllProducts = function () {
             resolve(result)
         })
         .catch(function(err){        
-            reject(console.log(err))             
+            reject(function(err){
+                if (err) throw err;
+            })             
         })
     });
 };
 
-exports.getProduct = function () {
-    return new Promise(function (resolve, reject) {        
+exports.getProduct = function (name, color) {
+    return new Promise(function (resolve, reject) {      
+        if ((name===undefined)|(color===undefined)){
+            name = "";
+            color = "";
+        }  
         const DBquery = 'select po.product_id, po.id as option_id, p.name, p.price + po.price_increase as price, po.product_color, po.description, p.sizetable_path '+
                         'from visokomerie.product_options po ' +
                         'left join visokomerie.product p '+
                         'on po.product_id = p.id '+
-                        'where po.id = "1"';
+                        'where po.product_color = "'+color.toString().toUpperCase()+'" and p.slug = "'+name.toUpperCase()+'"';
         getQuery(DBquery).then(function(result){
             resolve(result)
         })
         .catch(function(err){        
-            reject(console.log(err))             
+            reject(function(err){
+                if (err) throw err;
+            })             
         })
     });
 };
 
-exports.getProductImages = function () {
+exports.getProductImages = function (name, color) {
     return new Promise(function (resolve, reject) {        
+        if ((name===undefined)|(color===undefined)){
+            name = "";
+            color = "";
+        }
         const DBquery = 'select poi.id as image_id, poi.`path`, poi.main_image ' +
         'from visokomerie.product_options po ' +
         'left join visokomerie.product_options_image poi ' +
-       ' on poi.option_id = po.id ' +
-        'where po.id = "1"';
+        ' on poi.option_id = po.id ' +
+        'left join visokomerie.product p '+
+        'on p.id = po.product_id '+
+        'where po.product_color = "'+color.toString().toUpperCase()+'" and p.slug = "'+name.toUpperCase()+'"';
         getQuery(DBquery).then(function(result){
             resolve(result)
         })
         .catch(function(err){        
-            reject(console.log(err))             
+            reject(function(err){
+                if (err) throw err;
+            })             
         })
     });
 };

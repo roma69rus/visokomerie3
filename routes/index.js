@@ -10,6 +10,7 @@ router.get('/', function (req, res, next) {
     for (item in value[0]) {
       product[value[0][item]['id']] = value[0][item]; 
     }
+    console.log(product)
     let slide = {};
     for (item in value[1]) {
       slide[value[1][item]['id']] = value[1][item]; 
@@ -22,7 +23,10 @@ router.get('/', function (req, res, next) {
   .catch(function(){
     console.log("error")
   })
+  
 });
+
+
 
 module.exports = router;
 
