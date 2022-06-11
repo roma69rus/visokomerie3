@@ -31,7 +31,7 @@ function getQuery (sql) {
 
 exports.getMainPageProducts = function () {
     return new Promise(function (resolve, reject) {        
-        const DBquery = 'select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.`path`, img.main_image, p.slug ' +
+        const DBquery = 'select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.`path`, img.main_image, p.slug, opt.color_slug ' +
                         'from visokomerie.product_options opt ' +
                         'left join visokomerie.product p ' +
                         'on p.id = opt.product_id ' +
@@ -87,7 +87,7 @@ exports.getCatalogCategories = function () {
 
 exports.getCatalogAllProducts = function () {
     return new Promise(function (resolve, reject) {        
-        const DBquery = 'select ptc.category_id, po.id as product_id, p.name, po.product_color, p.price + po.price_increase as price, poi.`path`, p.slug '+
+        const DBquery = 'select ptc.category_id, po.id as product_id, p.name, po.product_color, p.price + po.price_increase as price, poi.`path`, p.slug, po.color_slug '+
         'from visokomerie.product p '+
         'left join visokomerie.products_to_categories ptc '+
         'on ptc.product_id = p.id '+
@@ -113,11 +113,11 @@ exports.getProduct = function (name, color) {
             name = "";
             color = "";
         }  
-        const DBquery = 'select po.product_id, po.id as option_id, p.name, p.price + po.price_increase as price, po.product_color, po.description, p.sizetable_path '+
+        const DBquery = 'select po.product_id, po.id as option_id, p.name, p.price + po.price_increase as price, po.product_color, po.description, p.sizetable_path, po.color_slug '+
                         'from visokomerie.product_options po ' +
                         'left join visokomerie.product p '+
                         'on po.product_id = p.id '+
-                        'where po.product_color = "'+color.toString().toUpperCase()+'" and p.slug = "'+name.toUpperCase()+'"';
+                        'where po.color_slug = "'+color+'" and p.slug = "'+name.toUpperCase()+'"';
         getQuery(DBquery).then(function(result){
             resolve(result)
         })
@@ -141,7 +141,7 @@ exports.getProductImages = function (name, color) {
         ' on poi.option_id = po.id ' +
         'left join visokomerie.product p '+
         'on p.id = po.product_id '+
-        'where po.product_color = "'+color.toString().toUpperCase()+'" and p.slug = "'+name.toUpperCase()+'"';
+        'where po.color_slug = "' + color + '" and p.slug = "' + name + '"';
         getQuery(DBquery).then(function(result){
             resolve(result)
         })

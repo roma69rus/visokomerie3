@@ -24,7 +24,7 @@ block main
         each item in product 
           li.featured__item
             .featured__item_imgwrapper
-              a(href='/products/'+item['slug']+'?color='+item['product_color'])
+              a(href='/products/'+item['slug']+'?color='+item['color_slug'])
                 img.featured__item_img(src=item['path'])
             h3.featured__item_heading #{item['name']}
             p.featured__item_text #{item['product_color']}
