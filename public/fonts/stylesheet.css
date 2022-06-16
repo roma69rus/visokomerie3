@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'SF UI Text';
+    src: url('SFUIText-Medium.eot');
+    src: local('SF UI Text Medium'), local('SFUIText-Medium'),
+        url('SFUIText-Medium.eot?#iefix') format('embedded-opentype'),
+        url('SFUIText-Medium.woff2') format('woff2'),
+        url('SFUIText-Medium.woff') format('woff'),
+        url('SFUIText-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF UI Text';
+    src: url('SFUIText-Light.eot');
+    src: local('SF UI Text Light'), local('SFUIText-Light'),
+        url('SFUIText-Light.eot?#iefix') format('embedded-opentype'),
+        url('SFUIText-Light.woff2') format('woff2'),
+        url('SFUIText-Light.woff') format('woff'),
+        url('SFUIText-Light.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF UI Text';
+    src: url('SFUIText-Regular.eot');
+    src: local('SF UI Text Regular'), local('SFUIText-Regular'),
+        url('SFUIText-Regular.eot?#iefix') format('embedded-opentype'),
+        url('SFUIText-Regular.woff2') format('woff2'),
+        url('SFUIText-Regular.woff') format('woff'),
+        url('SFUIText-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF UI Text';
+    src: url('SFUIText-Bold.eot');
+    src: local('SF UI Text Bold'), local('SFUIText-Bold'),
+        url('SFUIText-Bold.eot?#iefix') format('embedded-opentype'),
+        url('SFUIText-Bold.woff2') format('woff2'),
+        url('SFUIText-Bold.woff') format('woff'),
+        url('SFUIText-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}

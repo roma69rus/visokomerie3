@@ -73,7 +73,7 @@ document.querySelectorAll(".catalog__item_price").forEach(item => {
 var menuOpacity = document.querySelector('.header__container-opacity');
 console.log(menuOpacity)
   document.addEventListener('scroll', function(e) {
-    if(window.location.toString().indexOf('index.htm')>0) {    
+    if(window.location.toString().indexOf('index')>0) {    
         if ( scrollY  >= 460 ) {
             var pos = scrollY/2-460/2-49;
             // console.log(pos);
@@ -111,7 +111,7 @@ console.log(menuOpacity)
             // console.log(scrollY);
     }
 
-    if(window.location.toString().indexOf('catalog.htm')>0) {    
+    if(window.location.toString().indexOf('catalog')>0) {    
         if ( scrollY  >= 140 ) {
             var pos = scrollY/2-140/2-49;
             // console.log(pos);
@@ -129,7 +129,7 @@ console.log(menuOpacity)
             }
     }
 
-    if(window.location.toString().indexOf('delivery.htm')>0) {    
+    if(window.location.toString().indexOf('delivery')>0) {    
         var header = document.querySelector('.header__logo_text');
         if ( scrollY  >= 10 ) {
             var pos = scrollY/2-10/2-49;
@@ -150,7 +150,7 @@ console.log(menuOpacity)
                 
             }
     }
-    if(window.location.toString().indexOf('about.htm')>0) {    
+    if(window.location.toString().indexOf('about')>0) {    
         var header = document.querySelector('.header__logo_text_cat');
         if ( scrollY  >= 10 ) {
             var pos = scrollY/2-10/2-49;
@@ -171,7 +171,7 @@ console.log(menuOpacity)
                 
             }
     }
-    if(window.location.toString().indexOf('cart.htm')>0) {    
+    if(window.location.toString().indexOf('cart')>0) {    
         var header = document.querySelector('.header__logo_text');
         if ( scrollY  >= 10 ) {
             var pos = scrollY/2-10/2-49;

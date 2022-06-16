@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
         itemImg = this.getAttribute('data-img'),                            // фото товара      
         itemColor = parentBox.querySelector('.product__text').innerHTML;    // цвет
     if(cartData.hasOwnProperty(itemId)){     // если такой товар уже в корзине, то добавляем +1 к его количеству
-      cartData[itemId][2] += 1;
+      cartData[itemId][1] += 1;
     } else { // если товара в корзине еще нет, то добавляем в объект
-      cartData[itemId] = [itemTitle, itemPrice, 1, itemImg, itemColor];
+      cartData[itemId] = [itemId, 1];
     }
     if(setCartData(cartData)){ // Обновляем данные в LocalStorage
       this.disabled = false; // разблокируем кнопку после обновления LS

@@ -18,8 +18,8 @@ function getQuery (sql) {
         pool.getConnection(function(err, conn) {
             if (err) throw err;
             // Do something with the connection
-            conn.query(sql, function (err, result, fields) {
-                if (err) reject(err);
+            conn.query(sql, function (err, result) {
+                if (err) throw err;
                 // console.log("db", result)
                 resolve(result);
             });
@@ -29,86 +29,49 @@ function getQuery (sql) {
     })
 }
 
-exports.getMainPageProducts = function () {
-    return new Promise(function (resolve, reject) {        
-        const DBquery = 'select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.`path`, img.main_image, p.slug, opt.color_slug ' +
-                        'from visokomerie.product_options opt ' +
-                        'left join visokomerie.product p ' +
-                        'on p.id = opt.product_id ' +
-                        'left join visokomerie.product_options_image img ' +
-                        'on opt.id = img.option_id ' +
-                        'where img.main_image = "1" and p.id in ' +
-                            '(select p.id ' +
-                            'from product p, product_category pc, products_to_categories ptc ' +
-                            'where pc.id = ptc.category_id ' +
-                            'and ptc.product_id = p.id ' +
-                            'and pc.name = "БРЮКИ") ' +
-                        'order by opt.`order`';
-        getQuery(DBquery).then(function(result){
-            resolve(result)
-        })
-        .catch(function(err){        
-            reject(function(err){
-                if (err) throw err;
-            })             
-        })
-            
-    });
+exports.getSlider = function () {          
+    const DBquery = 'select * from visokomerie.slider';
+    return getQuery(DBquery);   
 };
 
-exports.getSlider = function () {
-    return new Promise(function (resolve, reject) {        
-        const DBquery = 'select * from visokomerie.slider';
-        getQuery(DBquery).then(function(result){
-            resolve(result)
-        })
-        .catch(function(err){        
-            reject(function(err){
-                if (err) throw err;
-            })             
-        })
-    });
+exports.getMainPageProducts = function () {         
+    const DBquery = 'select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.`path`, img.main_image, p.slug, opt.color_slug ' +
+                    'from visokomerie.product_options opt ' +
+                    'left join visokomerie.product p ' +
+                    'on p.id = opt.product_id ' +
+                    'left join visokomerie.product_options_image img ' +
+                    'on opt.id = img.option_id ' +
+                    'where img.main_image = "1" and p.id in ' +
+                        '(select p.id ' +
+                        'from product p, product_category pc, products_to_categories ptc ' +
+                        'where pc.id = ptc.category_id ' +
+                        'and ptc.product_id = p.id ' +
+                        'and pc.name = "БРЮКИ") ' +
+                    'order by opt.`order`';
+    return getQuery(DBquery);
 };
 
-exports.getCatalogCategories = function () {
-    return new Promise(function (resolve, reject) {        
-        const DBquery = 'select pc.id, pc.name, pc.description '+
-                        'from visokomerie.product_category pc';
-        getQuery(DBquery).then(function(result){            
-            resolve(result)
-        })
-        .catch(function(err){        
-            reject(function(err){
-                if (err) throw err;
-            })             
-        })
-    });
+
+exports.getCatalogCategories = function () {          
+    const DBquery = 'select pc.id, pc.name, pc.description '+
+                    'from visokomerie.product_category pc';
+    return getQuery(DBquery);
 };
 
-exports.getCatalogAllProducts = function () {
-    return new Promise(function (resolve, reject) {        
-        const DBquery = 'select ptc.category_id, po.id as product_id, p.name, po.product_color, p.price + po.price_increase as price, poi.`path`, p.slug, po.color_slug '+
-        'from visokomerie.product p '+
-        'left join visokomerie.products_to_categories ptc '+
-        'on ptc.product_id = p.id '+
-        'left join visokomerie.product_options po '+
-        'on po.product_id = p.id '+
-        'left join visokomerie.product_options_image poi ' +
-        'on poi.option_id = po.id ' +
-        'where po.price_increase is not null and poi.main_image = "1"';
-        getQuery(DBquery).then(function(result){
-            resolve(result)
-        })
-        .catch(function(err){        
-            reject(function(err){
-                if (err) throw err;
-            })             
-        })
-    });
+exports.getCatalogAllProducts = function () {     
+    const DBquery = 'select ptc.category_id, po.id as product_id, p.name, po.product_color, p.price + po.price_increase as price, poi.`path`, p.slug, po.color_slug '+
+    'from visokomerie.product p '+
+    'left join visokomerie.products_to_categories ptc '+
+    'on ptc.product_id = p.id '+
+    'left join visokomerie.product_options po '+
+    'on po.product_id = p.id '+
+    'left join visokomerie.product_options_image poi ' +
+    'on poi.option_id = po.id ' +
+    'where po.price_increase is not null and poi.main_image = "1"';
+    return getQuery(DBquery);
 };
 
-exports.getProduct = function (name, color) {
-    return new Promise(function (resolve, reject) {      
+exports.getProduct = function (name, color) {       
         if ((name===undefined)|(color===undefined)){
             name = "";
             color = "";
@@ -117,40 +80,39 @@ exports.getProduct = function (name, color) {
                         'from visokomerie.product_options po ' +
                         'left join visokomerie.product p '+
                         'on po.product_id = p.id '+
-                        'where po.color_slug = "'+color+'" and p.slug = "'+name.toUpperCase()+'"';
-        getQuery(DBquery).then(function(result){
-            resolve(result)
-        })
-        .catch(function(err){        
-            reject(function(err){
-                if (err) throw err;
-            })             
-        })
-    });
+                        'where po.color_slug = "'+color+'" and p.slug = "'+name+'"';
+        return getQuery(DBquery);
 };
 
-exports.getProductImages = function (name, color) {
-    return new Promise(function (resolve, reject) {        
-        if ((name===undefined)|(color===undefined)){
-            name = "";
-            color = "";
-        }
-        const DBquery = 'select poi.id as image_id, poi.`path`, poi.main_image ' +
-        'from visokomerie.product_options po ' +
+exports.getProductImages = function (name, color) {        
+    if ((name===undefined)|(color===undefined)){
+        name = "";
+        color = "";
+    }
+    const DBquery = 'select poi.id as image_id, poi.`path`, poi.main_image ' +
+    'from visokomerie.product_options po ' +
+    'left join visokomerie.product_options_image poi ' +
+    ' on poi.option_id = po.id ' +
+    'left join visokomerie.product p '+
+    'on p.id = po.product_id '+
+    'where po.color_slug = "' + color + '" and p.slug = "' + name + '"';
+    return getQuery(DBquery);
+};
+
+exports.getCartProductsByID = function (ids_array) {        
+    if (ids_array.length != 0){
+        const DBquery = 'select po.id, p.name, po.product_color, p.price + po.price_increase as price, poi.`path` ' +
+        'from visokomerie.product p ' +
+        'left join visokomerie.product_options po ' +
+        'on po.product_id = p.id ' +
         'left join visokomerie.product_options_image poi ' +
-        ' on poi.option_id = po.id ' +
-        'left join visokomerie.product p '+
-        'on p.id = po.product_id '+
-        'where po.color_slug = "' + color + '" and p.slug = "' + name + '"';
-        getQuery(DBquery).then(function(result){
-            resolve(result)
-        })
-        .catch(function(err){        
-            reject(function(err){
-                if (err) throw err;
-            })             
-        })
-    });
+        'on poi.option_id = po.id ' +
+        'where po.price_increase is not null and poi.main_image = "1" and po.id IN (' + ids_array.join(',') + ')'  //+ id + '"' 
+        return getQuery(DBquery);
+    }
+    else 
+        return "0";
+    
 };
 
 // module.exports = pool;

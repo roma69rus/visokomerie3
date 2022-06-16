@@ -1,0 +1,32 @@
+extends components/layout.pug
+block header 
+  include components/header.pug
+block main 
+  main
+    section.about
+      h2.about__heading О бренде для высоких
+      p.about__text
+        | Привет, меня зовут Даша, 
+        br
+        | Я основательница бренда VM
+      .about_imgwrapper
+        a(href='beige_palaco_product.html')
+          img.about__img(src='/images/about.jpg' alt='PALAZZO BLACK')
+      p.about__text
+        | VISOKOMERIE (VM) - бренд одежды для высоких девушек. 
+        br
+        |                 Идея шить одежду для высоких долго вынашивалась и ждала своего часа. я хотела, чтобы, наконец, все девушки ростом 170+ смогли надеть свои идеальные брюки на высокий рост, так как с ними, в основном, самая большая проблема.
+        br
+        br
+        |                 Мой рост 180 см. и я лично знаю, что такое брать брюки/джинсы на размеры больше, чтобы подходили по длине и потом ушивать в талии или смотреть на супер классный фасон и понимать, что их длина на среднестатистические 164 см.
+        br
+        br
+        |                 Пора менять эту несправедливость и дать высоким красоткам возможность носить вещи, которые будут сидеть безупречно.
+        br
+        |                 Я хочу, чтобы бренд VM стал объединением высоких, уверенных девушек, кто ценит и любит свою нестандартность.
+        br
+        |                 #явышеэтого
+block footer 
+  include components/footer.pug
+  script(src='/javascripts/swiper-bundle.min.js')
+  script(src='/javascripts/script.js')

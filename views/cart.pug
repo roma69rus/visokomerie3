@@ -1,0 +1,54 @@
+extends components/layout.pug
+block header 
+  include components/header.pug
+block main 
+  main
+    section.cart.container
+      // <h2 class="visually-hidden">корзина</h2>
+      h2.cart__heading Корзина
+      p#cart__text.cart__text
+      .cart__wrapper
+        ul#cart__list.cart__list
+        
+        ul#cart__clear.cart__list-buttons
+          li
+            button.cart__list-button(type='reset') Очистить корзину
+          li
+            button.cart__list-button(type='button' onclick="window.location.href='/catalog.html'") Продолжить шопинг
+        p#cart__text-whatsapp.cart__text-whatsapp
+          | Для того, чтобы брюки сидели на вас безупречно и были идеальной длины, мы поможем вам определить
+          | размер после оформления заказа, свяжемся с вами в WhatsApp. Оплата заказа уже после
+          | определения размера :)
+      #cart__shipping_wrapper.cart__shipping_wrapper
+        form#cart__shipping.cart__shipping(action='post')
+          h3.cart__shipping_heading Имя
+          label.visually-hidden(for='name') Name
+          input#clientname.cart__phone(type='text' placeholder='Ваше имя')
+          h3.cart__shipping_heading Номер телефона
+          label.visually-hidden(for='phone') Phone
+          input#phone.cart__phone.phone(type='text' placeholder='+7 (912) 345-67-89')
+          // 
+        .cart__total
+          .cart__total_text_wrapper
+            p#cart__grandtotal_text.cart__grandtotal_text
+          .cart__total_checkout_wrapper
+            hr.cart__total_line
+            button#cart__total_checkout.cart__total_checkout(type='submit' data-modal='3') Заказать
+          p.condition
+            | Нажимая кнопку "Заказать", вы даете согласие на обработку персональных данных в любой форме
+        // Модальное окно Товар добавлен в корзину
+        .modal(data-modal='3')
+          // Svg иконка для закрытия окна
+          svg.modal__cross.js-modal-close(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24')
+            path(d='M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z')
+          p.modal__title(style='font-size: 20px;') Заказ оформлен и отправлен менеджеру
+          p.modal__title Если вы желаете ускорить этот процесс, обратитесь в Whatsapp по ссылке ниже
+          button#watsup_btn.modal__btn.site-btn WHATSAPP
+        // Подложка под модальным окном
+        #overlay-modal.modal_overlay
+      .main__overlay
+block footer 
+  include components/footer.pug
+  script(src='/javascripts/swiper-bundle.min.js')
+  script(src='/javascripts/script.js')
+  script(src='/javascripts/cart.js')

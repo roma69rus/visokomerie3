@@ -10,6 +10,10 @@ var indexRouter = require('./routes/index');
 var catalogRouter = require('./routes/catalog');
 var productsRouter = require('./routes/products');
 var usersRouter = require('./routes/users');
+var aboutRouter = require('./routes/about');
+var deliveryRouter = require('./routes/delivery');
+var cartRouter = require('./routes/cart');
+var contactsRouter = require('./routes/contacts');
 
 var app = express();
 
@@ -109,7 +113,11 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use('/', indexRouter);
 app.use('/catalog', catalogRouter);
 app.use('/users', usersRouter);
+app.use('/about', aboutRouter);
+app.use('/delivery', deliveryRouter);
 app.use('/products', productsRouter);
+app.use('/cart', cartRouter);
+app.use('/contacts', contactsRouter);
 // app.use('/products', productsRouter);
 // app.use('/indexx', indexRouter);
 
@@ -127,6 +135,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('components/error');
+  console.log("[Error log]:",err)
 });
 
 

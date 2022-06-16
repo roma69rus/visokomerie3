@@ -1,0 +1,45 @@
+extends components/layout.pug
+block header 
+  include components/header.pug
+block main 
+  main
+    section.about
+      h2.delivery__header о доставке и возврате
+      p.delivery__text
+        | ДОСТАВКА/ВОЗВРАТ ПО САНКТ-ПЕТЕРБУРГУ
+        br
+        br
+      ul.delivery__ul
+        li.delivery__li-text
+          | ОСУЩЕСТВЛЯЕТСЯ ПОСЛЕ ПОЛНОЙ ОПЛАТЫ ЗАКАЗА
+        li.delivery__li-text
+          | ДОСТАВЛЯЕТСЯ ЯНДЕКС КУРЬЕРОМ.
+        li.delivery__li-text
+          | СТОИМОСТЬ ДОСТАВКИ В ПРЕДЕЛАХ ПЕТЕРБУРГА 300 РУБ.
+        li.delivery__li-text
+          | В СЛУЧАЕ ЕСЛИ ТОВАР ВАМ НЕ ПОДОШЁЛ, ЕГО МОЖНО ВЕРНУТЬ ОБРАТНО ЧЕРЕЗ СЛУЖБЫ ДОСТАВКИ (ЯНДЕКС КУРЬЕР ИЛИ ДР.)
+        li.delivery__li-text
+          | ПРИ ОБМЕНЕ/ВОЗВРАТЕ ДОСТАВКУ ОПЛАЧИВАЕТ ПОКУПАТЕЛЬ
+      p.delivery__text
+        | ДОСТАВКА/ВОЗРАТ ПО РОССИИ И СНГ
+        br
+        br
+      ul.delivery__ul
+        li.delivery__li-text
+          | ДОСТУПНА ПОСЛЕ ПОЛНОЙ ОПЛАТЫ ЗАКАЗА
+        li.delivery__li-text
+          | ОСУЩЕСТВЛЯЕТСЯ ТРАНСПОРТНОЙ КОМПАНИЕЙ BOXBERRY И ОПЛАЧИВАЕТСЯ ПОКУПАТЕЛЕМ ПРИ ПОЛУЧЕНИИ
+        li.delivery__li-text
+          | В СЛУЧАЕ ЕСЛИ ТОВАР ВАМ НЕ ПОДОШЁЛ, ЕГО МОЖНО ВЕРНУТЬ ОБРАТНО ЧЕРЕЗ СЛУЖБЫ ДОСТАВКИ (BOXBERRY. CДЭК)
+        li.delivery__li-text
+          | ПРИ ОБМЕНЕ/ВОЗВРАТЕ ДОСТАВКУ ОПЛАЧИВАЕТ ПОКУПАТЕЛЬ
+        li.delivery__li-text
+          | СРОК ВОЗВРАТА 14 ДНЕЙ
+          br
+          br
+          br
+
+block footer 
+  include components/footer.pug
+  script(src='/javascripts/swiper-bundle.min.js')
+  script(src='/javascripts/script.js')

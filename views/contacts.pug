@@ -1,0 +1,18 @@
+extends components/layout.pug
+block header 
+  include components/header.pug
+block main 
+  main
+    section.contacts
+      h1.contacts__heading КОНТАКТЫ
+      p.contacts__text НАПИШИТЕ НАМ В ЛЮБОЙ СОЦ.СЕТИ
+      p.contacts__text-small тут 3 иконки вотс, телега и инст)
+      p.contacts__feedback НАПИШИТЕ НАМ НА E-MAIL  
+      a(href= "mailto:visokomeriebrand@gmail.com")
+        p.contacts__feedback-email visokomeriebrand@gmail
+    
+
+block footer 
+  include components/footer.pug
+  script(src='/javascripts/swiper-bundle.min.js')
+  script(src='/javascripts/script.js')

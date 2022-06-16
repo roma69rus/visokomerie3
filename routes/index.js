@@ -20,12 +20,11 @@ router.get('/', function (req, res, next) {
       slide : JSON.parse(JSON.stringify(slide))
     });
   })
-  .catch(function(){
-    console.log("error")
+  .catch(function(err){
+    console.log(err)
   })
   
 });
-
 
 
 module.exports = router;

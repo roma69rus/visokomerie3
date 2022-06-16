@@ -11,8 +11,7 @@ router.get('/:name', function (req, res, next) {
     .then(function(value){      
       res.render('products.pug', {
         product: JSON.parse(JSON.stringify(value[0])),
-        images: JSON.parse(JSON.stringify(value[1])),
-        pname: product_name
+        images: JSON.parse(JSON.stringify(value[1]))
     });
     // console.log('key', Object.keys(value[0]))
     // console.log("prod", value[0][0]['description'])
