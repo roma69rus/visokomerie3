@@ -183,9 +183,10 @@
     .header__logo_text_cat.black{
         color: var(--dark-black-color);
     }
+    
     .catalog__heading {
         align-self: flex-start;
-        margin-top: 90px;
+        margin-top: 60px;
         font-size: 25px;
         line-height: 36px;
         font-weight: 400;
@@ -248,7 +249,7 @@
 
     .catalog__heading {
         align-self: flex-start;
-        margin-top: 90px;
+        margin-top: 60px;
         font-size: 25px;
         line-height: 36px;
         font-weight: 400;
@@ -655,7 +656,7 @@
     }
     .catalog__heading {
         align-self: flex-start;
-        margin-top: 90px;
+        margin-top: 60px;
         font-size: 25px;
         line-height: 36px;
         font-weight: 400;

@@ -172,7 +172,7 @@ console.log(menuOpacity)
             }
     }
     if(window.location.toString().indexOf('cart')>0) {    
-        var header = document.querySelector('.header__logo_text');
+        var header = document.querySelector('.header__logo_text_cat');
         if ( scrollY  >= 10 ) {
             var pos = scrollY/2-10/2-49;
             // console.log(pos);

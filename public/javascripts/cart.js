@@ -19,26 +19,26 @@ document.addEventListener('DOMContentLoaded', function () {
   
 
   //По данным из LocalStorage делаем POST запрос в БД
-  ajaxGetCartProducts(localStorageData, function(result){
-    console.log("callback res", result);
-    
-    //Отрисовываем товары
-    showCartItem(localStorageData, result);
+    ajaxGetCartProducts(localStorageData, function(result){
+      console.log("callback res", result);
+      
+      //Отрисовываем товары
+      showCartItem(localStorageData, result);
 
-    // ОТПАРВИТЬ EMAIL по НАЖАТИЮ КНОПКИ (Event)
-    addEvent(document.getElementById('cart__total_checkout'), 'click', function(e){
-      if ((!ValidPhone(getPhoneStr[0].value)) & (!ValidName(getNameStr.value))) {
-        getPhoneStr[0].style.border = '2px solid red'
-        getPhoneStr[0].addEventListener('click', function(e) {
-          e.preventDefault();
-        })
-      } else {
-        //sendEmail(getSendText().get("email"), getPhoneStr[0].value);     
-        OpenWhatsappModal (this, getSendText(localStorageData, result).get("whatsapp"))
-    } 
-  });
+      // ОТПАРВИТЬ EMAIL по НАЖАТИЮ КНОПКИ (Event)
+      addEvent(document.getElementById('cart__total_checkout'), 'click', function(e){
+        if ((!ValidPhone(getPhoneStr[0].value)) & (!ValidName(getNameStr.value))) {
+          getPhoneStr[0].style.border = '2px solid red'
+          getPhoneStr[0].addEventListener('click', function(e) {
+            e.preventDefault();
+          })
+        } else {
+          //sendEmail(getSendText().get("email"), getPhoneStr[0].value);     
+          OpenWhatsappModal (this, getSendText(localStorageData, result).get("whatsapp"))
+        } 
+      });
 
-  });
+    });
   
   
   //Очистка корзины и localStorage по кнопке
@@ -110,50 +110,44 @@ function showCartItem (localStorageData, SQLQuery)
   //ЗАПОЛНЯЕМ СТРАНИЦУ ТОВАРАМИ
   var totalPrice = 0; 
   console.log("cd", SQLQuery)
-  for(var items in localStorageData) {
-    if(localStorageData.hasOwnProperty(items)){
-            
-      var newli = document.createElement("li");
-      newli.classList.add("cart__list-item");    
-      //newli.id = items;
-      newli.setAttribute("data-id", items);
-
-      var product_id = SQLQuery[items]['id'];
-      var product_name = SQLQuery[items]['name'];
-      var price        = SQLQuery[items]['price'];
-      var quantity     = localStorageData[items][1];   
-      var img          = SQLQuery[items]['path'];
-      var color        = SQLQuery[items]['product_color'];
-      var price_num = Number (price.substring(0) * quantity);   //обрезаем доллар substring, переводим в number и умножаем на количество $100 -> 100
-      totalPrice += price_num;   
-      
-      newli.innerHTML = writeTextli(product_name, price, color, quantity, img);      
-      // console.log(newli);
-      cart_ul.appendChild(newli);        
-      
-      //Добавляем обработку события - удаление конкретного товара из корзины по крестику
-      document.querySelectorAll(".cart__list-close").forEach(item => {
-        item.addEventListener('click', function (e) {
-          var index = this.closest('li').getAttribute("data-id");
-          console.log(index);
-          delete localStorageData[index];
-          setCartData(localStorageData);
-          clearUl(cart_ul);        
-          showCartItem (localStorageData, SQLQuery);
-        });
-      })
-      cartText.style.display = "none";
-      cartTotal.innerHTML = "ИТОГО ₽ " + totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");;
-    } 
-  } 
-
-  var length = 0;
-  for(var items in localStorageData) {
-    length++
-  }
-  // console.log(length)
+  if (localStorage.length){
+    for(var items in localStorageData) {
+      if(localStorageData.hasOwnProperty(items)){
+              
+        var newli = document.createElement("li");
+        newli.classList.add("cart__list-item");    
+        //newli.id = items;
+        newli.setAttribute("data-id", items);
   
-  if (length=='0'){
+        var product_id = SQLQuery[items]['id'];
+        var product_name = SQLQuery[items]['name'];
+        var price        = SQLQuery[items]['price'];
+        var quantity     = localStorageData[items][1];   
+        var img          = SQLQuery[items]['path'];
+        var color        = SQLQuery[items]['product_color'];
+        var price_num = Number (price * quantity);   //обрезаем доллар substring, переводим в number и умножаем на количество $100 -> 100
+        totalPrice += price_num;   
+        
+        newli.innerHTML = writeTextli(product_name, price, color, quantity, img);      
+        // console.log(newli);
+        cart_ul.appendChild(newli);        
+        
+        //Добавляем обработку события - удаление конкретного товара из корзины по крестику
+        document.querySelectorAll(".cart__list-close").forEach(item => {
+          item.addEventListener('click', function (e) {
+            var index = this.closest('li').getAttribute("data-id");
+            console.log(index);
+            delete localStorageData[index];
+            setCartData(localStorageData);
+            clearUl(cart_ul);        
+            showCartItem (localStorageData, SQLQuery);
+          });
+        })
+        cartText.style.display = "none";
+        cartTotal.innerHTML = "ИТОГО ₽ " + totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");;
+      } 
+    } 
+  } else {
     // если в корзине пусто, то сигнализируем об этом
     cartText.style.display = "block"; 
     cartText.innerHTML = 'Корзина пустая';
@@ -170,10 +164,10 @@ function writeTextli (name, price, color, quantity, img){
     html_text += "<div class='cart__list-wrapper'>";
     html_text +=      `<h3 class='cart__list-heading'>${name}</h3>`;
     html_text +=      '<div class="cart__list-close"></div>';
-    html_text +=      `<p class='cart__list-text'>Price: <span class='cart__price'>${price}</span></p>`;
-    html_text +=      `<p class='cart__list-text'>Color: ${color}</p>`;                    
+    html_text +=      `<p class='cart__list-text'>Цена: <span class='cart__price'>${price}</span></p>`;
+    html_text +=      `<p class='cart__list-text'>Цвет: ${color}</p>`;                    
     html_text +=      "<div class='cart__list-subwrapper'>"
-    html_text +=          "<label class='cart__list-text'>Quantity:</label>"
+    html_text +=          "<label class='cart__list-text'>Количество:</label>"
     html_text +=          "<input type='number' min='1' step='1' class='cart__list-qty' value='" + quantity+ "'>"
     html_text +=      "</div>"
     html_text +="</div>";
@@ -364,22 +358,23 @@ function clearUl (ul) {
 }
 
 function ajaxGetCartProducts(localStorageData, callback) {
-  fetch('/cart/get-cart-products-by-id', {
-    method: 'POST',
-    body: JSON.stringify({ key: Object.keys(localStorageData) }),
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }).then(function (response) {
-    console.log("response", response)
-    return response.json();
-  })
-  .then(function (body) {
-    console.log("body", body);
-    // showCart(JSON.parse(body));
-    callback(body);
-    return body;
-  })
+  if (localStorage.length){
+    fetch('/cart/get-cart-products-by-id', {
+      method: 'POST',
+      body: JSON.stringify({ key: Object.keys(localStorageData) }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(function (response) {
+      console.log("response", response)
+      return response.json();
+    })
+    .then(function (body) {
+      console.log("body", body);
+      // showCart(JSON.parse(body));
+      callback(body);
+      return body;
+    })
+  }
 }
-

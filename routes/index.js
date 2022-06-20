@@ -1,11 +1,12 @@
 var express = require('express');
 var db = require('../sql/mysql')
+var litedb = require('../sql/sqlite')
 var router = express.Router();
 
 
 router.get('/', function (req, res, next) {
  
-  Promise.all([db.getMainPageProducts(), db.getSlider()]).then(function(value){      
+  Promise.all([litedb.getMainPageProducts(), litedb.getSlider()]).then(function(value){      
     let product = {};
     for (item in value[0]) {
       product[value[0][item]['id']] = value[0][item]; 
