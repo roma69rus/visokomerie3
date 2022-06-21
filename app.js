@@ -139,6 +139,11 @@ app.use(function(err, req, res, next) {
 });
 
 
+const port = 8000;
+
 
 module.exports = app;
-app.listen(3000);
+// app.listen(3000);
+app.listen(port, () => {
+  console.log(`Server running at ${port} port`);
+});
