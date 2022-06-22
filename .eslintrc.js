@@ -10,11 +10,12 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
-        "no-unused-vars": ["error", { "caughtErrorsIgnorePattern": "^ignore" }],
+        "no-unused-vars": ["warn", { "caughtErrorsIgnorePattern": "^ignore"}],
         "linebreak-style": [ // Применять согласованный стиль переноса строки
         "error",
-        "unix"
+        "unix",
     ],
+	semi: ["error", "always"],
        "no-console": "off",
     }
 }
