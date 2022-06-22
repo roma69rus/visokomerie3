@@ -30,7 +30,7 @@
 21. Заменить почтовый сервер на NodeMailer
 22. <s>Добавить новый товар + слайдер </s>
 23. Вернуть Preloader
-24. Rewrite to https Apache
+24. Rewrite to https (Apache)
 
 
 #### Stage 2 
