@@ -61,6 +61,12 @@ ol, ul {
     padding: 0;
 }
 
+.hero-big-image{
+  background-image: url(/images/wide.jpg);
+  width: 70%;
+  height: 100%;
+  max-width: 1280px;
+}
 
 .swiper-pagination-bullet-active {
     background-color: var(--white-color);
@@ -280,13 +286,16 @@ ol, ul {
 
 .hero {
     background-color: var(--dark-black-color);
-    height: 720px;
+    height: 400px;
     display: block;
     position: relative;
     top: 120px;
 }
 
 .hero__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
     overflow: hidden;
     background-color: white;

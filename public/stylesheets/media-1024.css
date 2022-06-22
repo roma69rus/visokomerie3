@@ -44,9 +44,7 @@
     .swiper-container{
         max-width: 600px;
     }
-    .hero-big-image{
-        background-image: url(http://www.example.com/bck.png);;
-    }
+
 
     .footer__container{
         padding: 0 50px;
@@ -291,6 +289,9 @@
     }
     .swiper-container{        
         display: block;
+    }
+    .hero-big-image {
+        display: none;
     }
 
     .hero-content__heading {
