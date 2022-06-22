@@ -15,10 +15,10 @@ exports.MainPageProducts =
   
 exports.CatalogCategories = `
   select pc.id, pc.name, pc.description 
-  from product_category pc 
+  from product_category pc order by pc.cat_order
 `;
 
-exports.Slider = `select * from slider`
+exports.Slider = `select * from slider ORDER BY slide_order`
 
 
 exports.CatalogAllProducts = 
@@ -31,7 +31,7 @@ exports.CatalogAllProducts =
   on po.product_id = p.id 
   left join product_options_image poi 
   on poi.option_id = po.id 
-  where po.price_increase is not null and poi.main_image = "1"
+  where po.price_increase is not null and poi.main_image = "1" 
 `;
 
 exports.Product = 

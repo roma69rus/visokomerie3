@@ -5,7 +5,7 @@ block main
   main
     section.catalog.container
       each cat in categories
-        h2.catalog__heading #{cat['name']}
+        h2.catalog__heading(id = 'catalog' + cat['id']) #{cat['name']}
         p.catalog__text #{cat['description']}          
         ul.catalog__list
           each item in products 

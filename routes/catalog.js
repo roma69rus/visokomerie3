@@ -5,16 +5,12 @@ var litedb = require('../sql/sqlite')
 
 
 router.get('/', function (req, res, next) {
-  Promise.all([litedb.getCatalogCategories(), litedb.getCatalogAllProducts()]).then(function(value){      
-    let categories = {};
-    for (item in value[0]) {
-      categories[value[0][item]['id']] = value[0][item]; 
-    }    
+  Promise.all([litedb.getCatalogCategories(), litedb.getCatalogAllProducts()]).then(function(value){            
     let products = {};
     for (item in value[1]) {
       products[value[1][item]['product_id']] = value[1][item]; 
     }
-    // let resultvalue = {}; //Это пример кода как упаковать в 1 вложенный объект категории и товары
+    // let resultvalue = {}; //Это пример кода как упаковать в 1 вложенный объект категории  -  товары
     // let currItem = {};
     // for (item in value[0]) {
     //   resultvalue[value[0][item]['id']] = {};
@@ -28,7 +24,7 @@ router.get('/', function (req, res, next) {
     // }
     // console.log("object", resultvalue)
     res.render('catalog', {
-      categories: JSON.parse(JSON.stringify(categories)),
+      categories: JSON.parse(JSON.stringify(value[0])),
       products : JSON.parse(JSON.stringify(products))
     });
   });

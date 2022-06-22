@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
     }
     res.render('index', {
       product: JSON.parse(JSON.stringify(product)), //value[0], value[1] можно вместо product, slide
-      slide : JSON.parse(JSON.stringify(slide))
+      slide : JSON.parse(JSON.stringify(value[1]))
     });
   })
   .catch(function(err){

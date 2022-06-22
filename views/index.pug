@@ -7,6 +7,7 @@ block main
       h1.visually-hidden Безупречные брюки на ваш рост 
       .container.hero__container
         .hero-content
+        .hero-big-image
         .swiper-container
           .swiper-wrapper
             each item in slide 
@@ -16,7 +17,8 @@ block main
                     source(src = item['img_path'] type="video/mp4")                           
               else 
                 .swiper-slide(style='background-image: url(' + item['img_path'] + ');')
-                  button.hero-content__btn.site-btn(onclick='window.location.href="#"') MUST HAVE
+                  a(href=item['url']) 
+                    button.hero-content__btn.site-btn(onclick='window.location.href="#"') #{item['button_txt']}
           .swiper-pagination
     section.featured.container
       h2.featured__heading Безупречные брюки на ваш рост      
