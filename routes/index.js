@@ -11,13 +11,13 @@ router.get('/', function (req, res, next) {
     for (item in value[0]) {
       product[value[0][item]['id']] = value[0][item]; 
     }
-    console.log(product)
-    let slide = {};
-    for (item in value[1]) {
-      slide[value[1][item]['id']] = value[1][item]; 
-    }
+    console.log(value[0])
+    // let slide = {};
+    // for (item in value[1]) {
+    //   slide[value[1][item]['id']] = value[1][item]; 
+    // }
     res.render('index', {
-      product: JSON.parse(JSON.stringify(product)), //value[0], value[1] можно вместо product, slide
+      product: JSON.parse(JSON.stringify(value[0])), //value[0], value[1] можно вместо product, slide
       slide : JSON.parse(JSON.stringify(value[1]))
     });
   })

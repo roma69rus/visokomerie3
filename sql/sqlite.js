@@ -11,7 +11,7 @@ exports.getMainPageProducts = () => {
       if (err) {
         reject(err);
       } else {
-        console.log("rows", rows)
+        // console.log("rows", rows)
         resolve(rows);
       }
     });
@@ -26,7 +26,7 @@ exports.getSlider = function () {
       if (err) {
         reject(err);
       } else {
-        console.log("rows1", rows)
+        // console.log("rows1", rows)
         resolve(rows);
       }
     });
@@ -41,7 +41,7 @@ exports.getCatalogCategories = function () {
       if (err) {
         reject(err);
       } else {
-        console.log("rows", rows)
+        // console.log("rows", rows)
         resolve(rows);
       }
     });
@@ -56,7 +56,7 @@ exports.getCatalogAllProducts = function () {
       if (err) {
         reject(err);
       } else {
-        console.log("rows", rows)
+        // console.log("rows", rows)
         resolve(rows);
       }
     });
@@ -75,7 +75,7 @@ exports.getProduct = function (name, color) {
       if (err) {
         reject(err);
       } else {
-        console.log("rows1", rows)
+        // console.log("rows1", rows)
         resolve(rows);
       }
     });
@@ -94,7 +94,7 @@ exports.getProductImages = function (name, color) {
       if (err) {
         reject(err);
       } else {
-        console.log("rows", rows)
+        // console.log("rows", rows)
         resolve(rows);
       }
     });
@@ -103,7 +103,7 @@ exports.getProductImages = function (name, color) {
 };
 
 exports.getCartProductsByID = function (ids_array) {        
-  const DBquery = 'select po.id, p.name, po.product_color, p.price + po.price_increase as price, poi.`path` ' +
+  const DBquery = 'select po.id, p.name, po.product_color, p.price + po.price_increase as price, poi.img_path ' +
   'from product p ' +
   'left join product_options po ' +
   'on po.product_id = p.id ' +
@@ -117,7 +117,7 @@ exports.getCartProductsByID = function (ids_array) {
         if (err) {
           reject(err);
         } else {
-          console.log("rows", rows)
+          // console.log("rows", rows)
           resolve(rows);
         }
       });

@@ -31,7 +31,8 @@ function getQuery (sql) {
 
 exports.getSlider = function () {          
     const DBquery = 'select * from visokomerie.slider';
-    return getQuery(DBquery);   
+    const promise = getQuery(DBquery);
+    return promise;   
 };
 
 exports.getMainPageProducts = function () {         

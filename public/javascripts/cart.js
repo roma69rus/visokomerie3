@@ -123,7 +123,7 @@ function showCartItem (localStorageData, SQLQuery)
         var product_name = SQLQuery[items]['name'];
         var price        = SQLQuery[items]['price'];
         var quantity     = localStorageData[items][1];   
-        var img          = SQLQuery[items]['path'];
+        var img          = SQLQuery[items]['img_path'];
         var color        = SQLQuery[items]['product_color'];
         var price_num = Number (price * quantity);   //обрезаем доллар substring, переводим в number и умножаем на количество $100 -> 100
         totalPrice += price_num;   
