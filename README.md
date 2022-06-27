@@ -5,6 +5,38 @@
 ![visokomerie](https://user-images.githubusercontent.com/22370622/173572199-db60551a-badd-48e9-8c48-454f9bd76e64.gif)
 
 
+## Architecture
+<img width="482" alt="architecture" src="https://user-images.githubusercontent.com/22370622/175981987-a04cc1a2-2c76-4aad-a29a-eeb0b49918b4.png">
+
+
+## Database Schema diagram
+<img width="805" alt="visokomerie _ DbDesigner net" src="https://user-images.githubusercontent.com/22370622/175945057-8d2d5d73-34c8-4317-9b10-dae30c8d6526.png">
+
+## Helpful link
+#### Database:
+1. Databaseanswers.org [**UPD**] перестал работать :(  
+http://www.databaseanswers.org/data_models/top_ten_data_models_e_commerce.htm  
+http://www.databaseanswers.org/data_models/e_commerce/index.htm  
+2. Oscommerce.com  
+tep_database-pr2.2-CVS.pdf   
+3. E-commerce-db  
+https://github.com/ramortegui/e-commerce-db/blob/master/README.md  
+4. Ecommerce-schema  
+https://github.com/mrjatinchauhan/ecommerce-schema  
+
+
+#### Node:  
+1. Node.js E-Commerce App REST API with MongoDB  
+https://www.youtube.com/watch?v=rMiRZ1iRC0A  
+https://github.com/safak/youtube/tree/node-shop-api  
+2. Express Tutorial: The Local Library website  
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website  
+3. E-commerce-course-project  
+https://github.com/CristianChris/e-commerce-course-project  
+4. Learn Rest API using Express.js and MySQL DB
+https://www.codementor.io/@julieisip/learn-rest-api-using-express-js-and-mysql-db-ldflyx8g2
+
+
 ## TODO
 #### Stage 1         
 1. <s>Переделать все страницы HTML -> PUG</s>
