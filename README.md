@@ -4,6 +4,11 @@
 
 ![visokomerie](https://user-images.githubusercontent.com/22370622/173572199-db60551a-badd-48e9-8c48-454f9bd76e64.gif)
 
+
+## Architecture
+<img width="482" alt="architecture" src="https://user-images.githubusercontent.com/22370622/175981987-a04cc1a2-2c76-4aad-a29a-eeb0b49918b4.png">
+
+
 ## Database Schema diagram
 <img width="805" alt="visokomerie _ DbDesigner net" src="https://user-images.githubusercontent.com/22370622/175945057-8d2d5d73-34c8-4317-9b10-dae30c8d6526.png">
 
