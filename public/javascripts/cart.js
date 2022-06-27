@@ -15,30 +15,32 @@ var checkoutBtn = document.getElementById('cart__total_checkout'); //Кнопк�
 document.addEventListener('DOMContentLoaded', function () {
 
   // Получаем данные из LocalStorage
-  var localStorageData = getCartData();
+  // const localStorageData = getCartData();
+  // console.log("localStorageData", localStorageData);
   
 
   //По данным из LocalStorage делаем POST запрос в БД
-    ajaxGetCartProducts(localStorageData, function(result){
-      console.log("callback res", result);
-      
-      //Отрисовываем товары
-      showCartItem(localStorageData, result);
+  ajaxGetCartProducts(function(result){
+    console.log("callback res", result);
+    
+    console.log("resultresult", result)
+    //Отрисовываем товары
+    showCartItem(result);
 
-      // ОТПАРВИТЬ EMAIL по НАЖАТИЮ КНОПКИ (Event)
-      addEvent(document.getElementById('cart__total_checkout'), 'click', function(e){
-        if ((!ValidPhone(getPhoneStr[0].value)) & (!ValidName(getNameStr.value))) {
-          getPhoneStr[0].style.border = '2px solid red'
-          getPhoneStr[0].addEventListener('click', function(e) {
-            e.preventDefault();
-          })
-        } else {
-          //sendEmail(getSendText().get("email"), getPhoneStr[0].value);     
-          OpenWhatsappModal (this, getSendText(localStorageData, result).get("whatsapp"))
-        } 
-      });
-
+    // ОТПАРВИТЬ EMAIL по НАЖАТИЮ КНОПКИ (Event)
+    addEvent(document.getElementById('cart__total_checkout'), 'click', function(e){
+      if ((!ValidPhone(getPhoneStr[0].value)) & (!ValidName(getNameStr.value))) {
+        getPhoneStr[0].style.border = '2px solid red'
+        getPhoneStr[0].addEventListener('click', function(e) {
+          e.preventDefault();
+        })
+      } else {
+        //sendEmail(getSendText().get("email"), getPhoneStr[0].value);     
+        OpenWhatsappModal (this, getSendText(result).get("whatsapp"))
+      } 
     });
+
+  });
   
   
   //Очистка корзины и localStorage по кнопке
@@ -104,13 +106,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-function showCartItem (localStorageData, SQLQuery)
+function showCartItem (SQLQuery)
 {
-
+  const localStorageData = getCartData();
   //ЗАПОЛНЯЕМ СТРАНИЦУ ТОВАРАМИ
   var totalPrice = 0; 
   console.log("cd", SQLQuery)
-  if (localStorage.length){
+  console.log("localStorageData", localStorageData)
+  if (localStorageData){
     for(var items in localStorageData) {
       if(localStorageData.hasOwnProperty(items)){
               
@@ -148,10 +151,19 @@ function showCartItem (localStorageData, SQLQuery)
       } 
     } 
   } else {
+    console.log("PYSTO")
     // если в корзине пусто, то сигнализируем об этом
+    // cartText.style.display = "block"; 
+    // cartText.innerHTML = 'Корзина пустая';
+    // shippingForm.style.display = "none";
+    
+
+    cartText = document.getElementById('cart__text');
     cartText.style.display = "block"; 
     cartText.innerHTML = 'Корзина пустая';
     shippingForm.style.display = "none";
+    var shippingFormTxt = document.getElementById('cart__text-whatsapp');
+    shippingFormTxt.style.display = "none";
   }
     
 }
@@ -210,18 +222,21 @@ function sendEmail(mailText, subjecttext) {
 }
 
 // Функция, которая генерирует текст для Email Whatsapp
-function getSendText(localStorageData, SQLdata) {
+function getSendText(SQLdata) {
+  const localStorageData = getCartData();
   const arr = new Map();
   var email_text = 'Сформирован заказ:' + "<br>";
   var whatsapp_text = "Привет, я хочу сделать заказ на сайте visokomerie.ru: " + "\n";
   for (var items in localStorageData){
-    var product_name = SQLdata[items]['name'];
-    var price        = SQLdata[items]['price'];
-    var quantity     = localStorageData[items][1];        
-    var color        = SQLdata[items]['product_color'];
+    if(localStorageData.hasOwnProperty(items)){
+      var product_name = SQLdata[items]['name'];
+      var price        = SQLdata[items]['price'];
+      var quantity     = localStorageData[items][1];        
+      var color        = SQLdata[items]['product_color'];
 
-    email_text += "- " + product_name + " " + color + " Количество: " + quantity + " Цена: " + price + ";<br>";
-    whatsapp_text += "- " + product_name + " " + color + " Количество: " + quantity + " Цена: " + price + ";\n";
+      email_text += "- " + product_name + " " + color + " Количество: " + quantity + " Цена: " + price + ";<br>";
+      whatsapp_text += "- " + product_name + " " + color + " Количество: " + quantity + " Цена: " + price + ";\n";
+    }
   }
   email_text+="Имя клиента: " + getNameStr.value + "<br>" + "Телефон :" + getPhoneStr[0].value;
   whatsapp_text += "Меня зовут " + getNameStr.value;
@@ -357,8 +372,9 @@ function clearUl (ul) {
   // ul.innerHTML = '';
 }
 
-function ajaxGetCartProducts(localStorageData, callback) {
-  if (localStorage.length){
+function ajaxGetCartProducts(callback) {
+  const localStorageData = getCartData();
+  if (localStorageData){
     fetch('/cart/get-cart-products-by-id', {
       method: 'POST',
       body: JSON.stringify({ key: Object.keys(localStorageData) }),
@@ -366,7 +382,8 @@ function ajaxGetCartProducts(localStorageData, callback) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-    }).then(function (response) {
+    })
+    .then(function (response) {
       console.log("response", response)
       return response.json();
     })

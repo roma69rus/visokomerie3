@@ -1,0 +1,63 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql8-18060e96982-67439e89efd1d1e4": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "localhost",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"url": "jdbc:mysql://localhost:3306/",
+				"home": "C:\\Program Files\\MySQL\\MySQL Router 8.0",
+				"type": "dev",
+				"properties": {
+					"connectTimeout": "20000",
+					"rewriteBatchedStatements": "true",
+					"enabledTLSProtocols": "TLSv1,TLSv1.1,TLSv1.2"
+				},
+				"auth-model": "native"
+			}
+		},
+		"sqlite_jdbc-181717d2d76-7a47f126f8abd66": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "sqlite3.exe",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "C:\\dstr\\sqlite\\sqlite3.exe",
+				"url": "jdbc:sqlite:C:\\dstr\\sqlite\\sqlite3.exe",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"virtual-models": {
+		"mysql8-18060e96982-67439e89efd1d1e4": {
+			"visokomerie": {
+				":product_options_image": {
+					"properties": {
+						"erd.diagram.state": {
+							"serialized": "<diagram version=\"1\" name=\"empty\" time=\"202205271046\"><entities><data-source id=\"mysql8-18060e96982-67439e89efd1d1e4\"><entity id=\"1\" name=\"product_options_image\" fq-name=\"visokomerie.product_options_image\" order=\"0\" color-bg=\"255,128,64\" x=\"98\" y=\"426\"><path name=\"visokomerie\"/></entity><entity id=\"2\" name=\"product_options\" fq-name=\"visokomerie.product_options\" order=\"1\" x=\"0\" y=\"0\"><path name=\"visokomerie\"/></entity><entity id=\"3\" name=\"product_category\" fq-name=\"visokomerie.product_category\" order=\"3\" x=\"578\" y=\"12\"><path name=\"visokomerie\"/></entity><entity id=\"4\" name=\"product\" fq-name=\"visokomerie.product\" order=\"2\" x=\"276\" y=\"20\"><path name=\"visokomerie\"/></entity></data-source></entities><relations><relation name=\"product_category_fk0\" fq-name=\"visokomerie.product_category.product_category_fk0\" type=\"fk\" pk-ref=\"1\" fk-ref=\"3\"/><relation name=\"product_options_image_FK\" fq-name=\"visokomerie.product_options_image.product_options_image_FK\" type=\"fk\" pk-ref=\"2\" fk-ref=\"1\"/><relation name=\"product_options_fk0\" fq-name=\"visokomerie.product_options.product_options_fk0\" type=\"fk\" pk-ref=\"4\" fk-ref=\"2\"/></relations></diagram>"
+						}
+					}
+				}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Разработка",
+			"color": "255,255,255",
+			"description": "База данных для разработки",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
