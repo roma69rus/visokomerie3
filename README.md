@@ -10,6 +10,7 @@
 ## Helpful link
 #### Database:
 1) Databaseanswers.org [**UPD**] перестал работать :(
+
 http://www.databaseanswers.org/data_models/top_ten_data_models_e_commerce.htm 
 http://www.databaseanswers.org/data_models/e_commerce/index.htm 
 2)Oscommerce.com
