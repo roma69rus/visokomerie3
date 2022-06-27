@@ -33,6 +33,8 @@ https://github.com/safak/youtube/tree/node-shop-api
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website  
 3. E-commerce-course-project  
 https://github.com/CristianChris/e-commerce-course-project  
+4. Learn Rest API using Express.js and MySQL DB
+https://www.codementor.io/@julieisip/learn-rest-api-using-express-js-and-mysql-db-ldflyx8g2
 
 
 ## TODO
