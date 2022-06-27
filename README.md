@@ -9,25 +9,25 @@
 
 ## Helpful link
 #### Database:
-1. Databaseanswers.org [**UPD**] перестал работать :(
-http://www.databaseanswers.org/data_models/top_ten_data_models_e_commerce.htm 
-http://www.databaseanswers.org/data_models/e_commerce/index.htm 
-2. Oscommerce.com
-tep_database-pr2.2-CVS.pdf 
-3. E-commerce-db
-https://github.com/ramortegui/e-commerce-db/blob/master/README.md
-4. Ecommerce-schema
-https://github.com/mrjatinchauhan/ecommerce-schema
+1. Databaseanswers.org [**UPD**] перестал работать :(  
+http://www.databaseanswers.org/data_models/top_ten_data_models_e_commerce.htm  
+http://www.databaseanswers.org/data_models/e_commerce/index.htm  
+2. Oscommerce.com  
+tep_database-pr2.2-CVS.pdf   
+3. E-commerce-db  
+https://github.com/ramortegui/e-commerce-db/blob/master/README.md  
+4. Ecommerce-schema  
+https://github.com/mrjatinchauhan/ecommerce-schema  
 
 
-#### Node:
-1. Node.js E-Commerce App REST API with MongoDB 
-https://www.youtube.com/watch?v=rMiRZ1iRC0A
-https://github.com/safak/youtube/tree/node-shop-api
-2. Express Tutorial: The Local Library website
-https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website
-3. E-commerce-course-project
-https://github.com/CristianChris/e-commerce-course-project
+#### Node:  
+1. Node.js E-Commerce App REST API with MongoDB  
+https://www.youtube.com/watch?v=rMiRZ1iRC0A  
+https://github.com/safak/youtube/tree/node-shop-api  
+2. Express Tutorial: The Local Library website  
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website  
+3. E-commerce-course-project  
+https://github.com/CristianChris/e-commerce-course-project  
 
 
 ## TODO
