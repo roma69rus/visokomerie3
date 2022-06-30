@@ -32,6 +32,7 @@ or
 ```sh
 nodemon app.js
 ```
+Open http://localhost:8000 to view it in the browser.
 
 ### Docker
 #### Build image  
