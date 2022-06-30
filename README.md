@@ -33,6 +33,16 @@ or
 nodemon app.js
 ```
 
+### Docker
+#### Build image  
+```sh
+docker build -t <username>/node:16 .
+```
+#### Run container
+```sh
+docker run -p 8000:8000 <username>/node:16
+```
+
 ## Helpful link
 #### Database:
 1. Databaseanswers.org [**UPD**] перестал работать :(  
