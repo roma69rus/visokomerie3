@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var catalogRouter = require('./routes/catalog');
 var productsRouter = require('./routes/products');
-var usersRouter = require('./routes/users');
 var aboutRouter = require('./routes/about');
 var deliveryRouter = require('./routes/delivery');
 var cartRouter = require('./routes/cart');
@@ -35,84 +34,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 
 
-
-
-// app.get('/catalog', function (request, response) {
-//   const DBquery1 = 'select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.`path`, img.main_image ' +
-//   'from visokomerie.product_options opt ' +
-//   'left join visokomerie.product p ' +
-//   'on p.id = opt.product_id ' +
-//   'left join visokomerie.product_options_image img ' +
-//   'on opt.id = img.option_id ' +
-//   'where img.main_image = "1" and p.id in ' +
-//     '(select p.id ' +
-//     'from product p, product_category pc, products_to_categories ptc ' +
-//     'where pc.id = ptc.category_id ' +
-//     'and ptc.product_id = p.id ' +
-//     'and pc.name = "БРЮКИ") ' +
-//   'order by opt.`order`';
-  
-//   const DBquery2 = 'select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.`path`, img.main_image ' +
-//   'from visokomerie.product_options opt ' +
-//   'left join visokomerie.product p ' +
-//   'on p.id = opt.product_id ' +
-//   'left join visokomerie.product_options_image img ' +
-//   'on opt.id = img.option_id ' +
-//   'where img.main_image = "1" and p.id in ' +
-//     '(select p.id ' +
-//     'from product p, product_category pc, products_to_categories ptc ' +
-//     'where pc.id = ptc.category_id ' +
-//     'and ptc.product_id = p.id ' +
-//     'and pc.name = "РУБАШКИ") ' +
-//   'order by opt.`order`';
-
-//   let pants = new Promise(function(resolve, reject){   //брюки
-//     PoolConnections.getConnection(function(err, conn) {
-//       if(err) throw err;
-//       conn.query(DBquery1, function (err, result, fields) {
-//         if (err) throw err;
-//         resolve(result);    
-//         conn.release();
-//       });
-//     });
-//   });
-
-//   let shirt = new Promise(function(resolve, reject){
-//     PoolConnections.getConnection(function(err, conn) {  
-//       if(err) return reject(err);
-//       conn.query(DBquery2, function (err, result, fields) {
-//         if (err) throw err;   
-//         resolve(result);     
-//         conn.release();  
-//       });
-//     });
-//   });
-
-//   Promise.all([pants, shirt]).then(function(value){      
-//     let pants = {};
-//     for (item in value[0]) {
-//       pants[value[0][item]['id']] = value[0][item]; 
-//     }
-
-//     let shirt = {};
-//     for (item in value[1]) {
-//       shirt[value[1][item]['id']] = value[1][item]; 
-//     }
-  
-//     console.log(pants);
-//     console.log(shirt);
-//     // response.render('catalog', {
-//     //   pants: JSON.parse(JSON.stringify(pants)),
-//     //   shirt : JSON.parse(JSON.stringify(shirt))
-//     // });
-//   });
-// });
-
-
-
 app.use('/', indexRouter);
 app.use('/catalog', catalogRouter);
-app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/delivery', deliveryRouter);
 app.use('/products', productsRouter);

@@ -44,13 +44,13 @@ exports.Product =
 
 exports.productImages = (name, color) =>{
   const query = `
-  select poi.id as image_id, poi.img_path, poi.main_image 
-  from product_options po 
-  left join product_options_image poi 
-  on poi.option_id = po.id 
-  left join product p 
-  on p.id = po.product_id 
-  where po.color_slug = "${color}" and p.slug = "${name}"
+    select poi.id as image_id, poi.img_path, poi.main_image 
+    from product_options po 
+    left join product_options_image poi 
+    on poi.option_id = po.id 
+    left join product p 
+    on p.id = po.product_id 
+    where po.color_slug = "${color}" and p.slug = "${name}"
   `;
   return query
 } ;
