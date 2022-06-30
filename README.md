@@ -44,6 +44,21 @@ docker build -t <username>/node:16 .
 docker run -p 8000:8000 <username>/node:16
 ```
 
+## Folder structure
+|---bin
+|---controllers
+|---models
+|---node_modules
+|---public
+|   |---fonts
+|   |---images
+|   |---javascripts
+|   |---stylesheets
+|---routes
+|---sql
+|---views
+    |---components
+
 ## Helpful link
 #### Database:
 1. Databaseanswers.org [**UPD**] перестал работать :(  
