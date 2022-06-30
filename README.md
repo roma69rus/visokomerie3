@@ -45,19 +45,19 @@ docker run -p 8000:8000 <username>/node:16
 ```
 
 ## Folder structure
-|---bin
-|---controllers
-|---models
-|---node_modules
-|---public
-|   |---fonts
-|   |---images
-|   |---javascripts
-|   |---stylesheets
-|---routes
-|---sql
-|---views
-    |---components
+|---bin  
+|---controllers  
+|---models  
+|---node_modules  
+|---public  
+|   |---fonts  
+|   |---images  
+|   |---javascripts  
+|   |---stylesheets  
+|---routes  
+|---sql  
+|---views  
+    |---components  
 
 ## Helpful link
 #### Database:
