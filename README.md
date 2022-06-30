@@ -10,7 +10,7 @@
 3. Релизовать функционал обратной связи на email и whatsapp (модальные окна)
 4. Админка: добавление и редактирование категорий, товаров; редактирование слайдера, редактирование главной страницы и порядка вывода товаров на всех страницах.
 
-## Architecture
+## Server architecture
 <img width="477" alt="architecture" src="https://user-images.githubusercontent.com/22370622/176662927-f72bfbe5-c613-46db-92af-ad2b17477660.png">
 
 ## Database Schema diagram
