@@ -68,6 +68,7 @@ https://www.codementor.io/@julieisip/learn-rest-api-using-express-js-and-mysql-d
 23. <s>Добавить новый товар + слайдер </s>
 24. Вернуть Preloader
 25. <s>Rewrite to https (Apache) </s>
+26. Добавить express-validator
 
 
 #### Stage 2 
