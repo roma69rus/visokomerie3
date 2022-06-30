@@ -67,7 +67,7 @@ https://www.codementor.io/@julieisip/learn-rest-api-using-express-js-and-mysql-d
 22. Заменить почтовый сервер на NodeMailer
 23. <s>Добавить новый товар + слайдер </s>
 24. Вернуть Preloader
-25. Rewrite to https (Apache)
+25. <s>Rewrite to https (Apache) </s>
 
 
 #### Stage 2 
