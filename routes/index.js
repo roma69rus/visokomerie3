@@ -1,31 +1,11 @@
 var express = require('express');
-var db = require('../sql/mysql')
-var litedb = require('../sql/sqlite')
 var router = express.Router();
 
+//Controllers
+var index = require('../controllers/index');
 
-router.get('/', function (req, res, next) {
- 
-  Promise.all([litedb.getMainPageProducts(), litedb.getSlider()]).then(function(value){      
-    let product = {};
-    for (item in value[0]) {
-      product[value[0][item]['id']] = value[0][item]; 
-    }
-    console.log(value[0])
-    // let slide = {};
-    // for (item in value[1]) {
-    //   slide[value[1][item]['id']] = value[1][item]; 
-    // }
-    res.render('index', {
-      product: JSON.parse(JSON.stringify(value[0])), //value[0], value[1] можно вместо product, slide
-      slide : JSON.parse(JSON.stringify(value[1]))
-    });
-  })
-  .catch(function(err){
-    console.log(err)
-  })
-  
-});
+
+router.get('/', index.getIndexPage);
 
 
 module.exports = router;
