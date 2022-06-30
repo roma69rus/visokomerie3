@@ -45,6 +45,7 @@ docker run -p 8000:8000 <username>/node:16
 ```
 
 ## Folder structure
+<pre>
 |---bin  
 |---controllers  
 |---models  
@@ -58,6 +59,7 @@ docker run -p 8000:8000 <username>/node:16
 |---sql  
 |---views  
     |---components  
+</pre>
 
 ## Helpful link
 #### Database:
