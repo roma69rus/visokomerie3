@@ -6,7 +6,8 @@
 
 
 ## Architecture
-<img width="482" alt="architecture" src="https://user-images.githubusercontent.com/22370622/175981987-a04cc1a2-2c76-4aad-a29a-eeb0b49918b4.png">
+<img width="477" alt="architecture" src="https://user-images.githubusercontent.com/22370622/176662927-f72bfbe5-c613-46db-92af-ad2b17477660.png">
+
 
 
 ## Database Schema diagram
