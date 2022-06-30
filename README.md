@@ -17,7 +17,7 @@
 <img width="477" alt="architecture" src="https://user-images.githubusercontent.com/22370622/176662927-f72bfbe5-c613-46db-92af-ad2b17477660.png">
 
 ## Database Schema diagram
-"as to be"
+"as to be"  
 <img width="805" alt="visokomerie _ DbDesigner net" src="https://user-images.githubusercontent.com/22370622/175945057-8d2d5d73-34c8-4317-9b10-dae30c8d6526.png">
 
 ### Installation
