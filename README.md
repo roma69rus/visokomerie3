@@ -114,6 +114,7 @@ https://www.codementor.io/@julieisip/learn-rest-api-using-express-js-and-mysql-d
 24. Вернуть Preloader
 25. <s>Rewrite to https (Apache) </s>
 26. Добавить express-validator
+27. В Desktop вертке вернуть слайдер на страницах товаров
 
 
 #### Stage 2 
