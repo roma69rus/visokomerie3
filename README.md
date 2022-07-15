@@ -4,13 +4,62 @@
 
 ![visokomerie](https://user-images.githubusercontent.com/22370622/173572199-db60551a-badd-48e9-8c48-454f9bd76e64.gif)
 
+## Исходные основные ФТТ
+1. ✅ Адаптивная верстка (упор на мобильные устройства) 
+2. ✅ Реализовать функционал "Корзины"
+3. ✅ Релизовать функционал обратной связи на email и whatsapp (модальные окна)
+4. Выставлять статус товарам (NEW)
+5. ✅50% Вести журнал заказов, которые поступили по почте и whatsapp
+6. Возможность делать скидки на товары
+7. Админка: добавление и редактирование категорий, товаров; редактирование слайдера, редактирование главной страницы и порядка вывода товаров на всех страницах.
 
-## Architecture
-<img width="482" alt="architecture" src="https://user-images.githubusercontent.com/22370622/175981987-a04cc1a2-2c76-4aad-a29a-eeb0b49918b4.png">
-
+## Server architecture
+<img width="477" alt="architecture" src="https://user-images.githubusercontent.com/22370622/176662927-f72bfbe5-c613-46db-92af-ad2b17477660.png">
 
 ## Database Schema diagram
+"as to be"  
 <img width="805" alt="visokomerie _ DbDesigner net" src="https://user-images.githubusercontent.com/22370622/175945057-8d2d5d73-34c8-4317-9b10-dae30c8d6526.png">
+
+## Installation
+```sh
+npm install 
+```
+### Usage
+```sh
+node app.js
+```
+or
+```sh
+nodemon app.js
+```
+Open http://localhost:8000 to view it in the browser.
+
+### Docker
+#### Build image  
+```sh
+docker build -t <username>/node:16 .
+```
+#### Run container
+```sh
+docker run -p 8000:8000 <username>/node:16
+```
+
+## Folder structure
+<pre>
+|---bin  
+|---controllers  
+|---models  
+|---node_modules  
+|---public  
+|   |---fonts  
+|   |---images  
+|   |---javascripts  
+|   |---stylesheets  
+|---routes  
+|---sql  
+|---views  
+    |---components  
+</pre>
 
 ## Helpful link
 #### Database:
@@ -57,13 +106,15 @@ https://www.codementor.io/@julieisip/learn-rest-api-using-express-js-and-mysql-d
 16. <s>Исправить баг в шапке сайта</s>
 17. <s>Развернуть на виртуалке itldc.com (оставил apache)</s>
 18. <s>Поправить Desktop верстку, изменить главную страницу, отключить слайдер, добавить горизонтальную картинку</s> 
-19. Написать контроллеры
+19. <s>Написать контроллеры и модели (controllers, models)</s>
 20. <s>Сконфигурировать eslint</s>
 21. Написать тесты для модуля
 22. Заменить почтовый сервер на NodeMailer
 23. <s>Добавить новый товар + слайдер </s>
 24. Вернуть Preloader
-25. Rewrite to https (Apache)
+25. <s>Rewrite to https (Apache) </s>
+26. Добавить express-validator
+27. В Desktop вертке вернуть слайдер на страницах товаров
 
 
 #### Stage 2 
