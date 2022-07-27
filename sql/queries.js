@@ -14,7 +14,7 @@ exports.MainPageProducts = `
   order by opt.po_order`
   
 exports.CatalogCategories = `
-  select pc.id, pc.name, pc.description 
+  select pc.id, pc.name, pc.description, pc.isEven 
   from product_category pc order by pc.cat_order
 `;
 
@@ -22,7 +22,7 @@ exports.Slider = `select * from slider ORDER BY slide_order`
 
 
 exports.CatalogAllProducts = `
-  select ptc.category_id, po.id as product_id, p.name, po.product_color, p.price + po.price_increase as price, poi.img_path, p.slug, po.color_slug 
+  select ptc.category_id, po.id as product_id, p.name, po.product_color, p.price + po.price_increase as price, poi.img_path, p.slug, po.color_slug, po.label 
   from product p 
   left join products_to_categories ptc 
   on ptc.product_id = p.id 

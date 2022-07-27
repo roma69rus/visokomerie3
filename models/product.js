@@ -33,7 +33,7 @@ class Product {
         if (err) {
           reject(err);
         } else {
-          // console.log("rows", rows)
+          // console.log("CATALOG", rows)
           resolve(rows);
         }
       });

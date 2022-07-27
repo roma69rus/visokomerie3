@@ -134,7 +134,6 @@ ol, ul {
 .header {
     background-color: black;
     width: 100%;
-    box-shadow: 0px 5px 40px rgba(0, 0, 0, 1);
     /* Закрепление шапки, удалить ниже */
     position: fixed;
     z-index: 100;
@@ -145,11 +144,11 @@ ol, ul {
     align-items: center;
     justify-content: space-between;
     z-index: 999;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
-    height: 99px;
+    height: 70px;
     padding-top: 5px;
     background-color: rgba(1,1,1, 0.5);   
 }
@@ -273,9 +272,6 @@ ol, ul {
 .header__icon {
   fill: #E8E8E8;
 }
-.header__icon.black{
-  fill: var(--dark-black-color);
-}
 
 
 /* hero */
@@ -313,6 +309,20 @@ ol, ul {
     list-style: none;
     padding: 0;
     z-index: 1;
+}
+
+.swiper-container.product {
+  display: block;
+  max-width: 600px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
 }
 
 .swiper-slide {
@@ -1108,9 +1118,46 @@ ol, ul {
   height: 100%;  
 }
 
+.catalog__item_even {
+  max-width: 360px;
+  width: 47%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  /* background-color: var(--dark-grey-color); */
+  background-color: var(--white-color);
+  margin: 0 0 16px 0;
+}
+
+
 .catalog__item_imgwrapper {  
   height: 480px;
+  position: relative;
 }
+
+.header__icon.white {
+  fill: white;
+}
+
+.catalog__item_label {
+  position: absolute; 
+  top: 0px; 
+  right: 0px; 
+  color: white; 
+  background-color: rgba(0, 0, 0, 0.7); 
+  padding: 8px 12px 8px 12px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
 
 .catalog__item_img {
   /* object-fit: contain; */

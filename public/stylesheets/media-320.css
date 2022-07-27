@@ -29,6 +29,10 @@
       .catalog__heading.shirt{
         margin-top: 10px;
       }
+
+      .catalog__item_label {
+        font-size: 12px;
+      }
       
       .container
       {
@@ -56,6 +60,10 @@
         background-color: rgba(1,1,1, 0.5);        
         /* background-color: rgba(0,0,0, 0); */
     }
+
+    .header__icon {
+        fill: black;
+      }
 
 
     .app__logo{
@@ -657,6 +665,11 @@
     .header__logo_text_cat.black{
         color: var(--dark-black-color);
     }
+
+    .header__icon {
+        fill: black;
+      }
+
     .catalog__heading {
         align-self: flex-start;
         margin-top: 60px;
