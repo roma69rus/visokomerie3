@@ -14,7 +14,12 @@ block main
       .product__desciption.container
         h3.product__heading #{product['0']['name']}
         p.product__text #{product['0']['product_color']}
-        p.product__price #{product['0']['price']}
+        if product['0']["total_price"]
+          p(style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin: 0")        
+            span.product__price(style="padding-right: 15px; display: inline-block; margin: 12px 0 12px 0; text-decoration: line-through; text-decoration-color: red;") #{product['0']["price"]} 
+            span.product__price(style="display: inline-block; margin: 12px 0 12px 0; font-weight: bold") #{product['0']["total_price"]}
+        else
+          p.product__price #{product['0']['price']}
         .product__divider
         .info
           input#info__body_1.info__switch(type='checkbox')

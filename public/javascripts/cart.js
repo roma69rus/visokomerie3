@@ -122,16 +122,25 @@ function showCartItem (SQLQuery)
         //newli.id = items;
         newli.setAttribute("data-id", items);
   
-        var product_id = SQLQuery[items]['id'];
-        var product_name = SQLQuery[items]['name'];
-        var price        = SQLQuery[items]['price'];
-        var quantity     = localStorageData[items][1];   
-        var img          = SQLQuery[items]['img_path'];
-        var color        = SQLQuery[items]['product_color'];
-        var price_num = Number (price * quantity);   //обрезаем доллар substring, переводим в number и умножаем на количество $100 -> 100
-        totalPrice += price_num;   
+        var product_id        = SQLQuery[items]['id'];
+        var product_name      = SQLQuery[items]['name'];
+        var price             = SQLQuery[items]['price'];
+        var quantity          = localStorageData[items][1];   
+        var img               = SQLQuery[items]['img_path'];
+        var color             = SQLQuery[items]['product_color'];
+        var productTotalPrice = SQLQuery[items]['total_price'];
+
+        if (productTotalPrice)
+        {
+          var price_num = Number (productTotalPrice * quantity);   
+          totalPrice += price_num;
+        }else{
+          var price_num = Number (price * quantity);  
+          totalPrice += price_num;
+        }
+           
         
-        newli.innerHTML = writeTextli(product_name, price, color, quantity, img);      
+        newli.innerHTML = writeTextli(product_name, price, color, quantity, img, productTotalPrice);      
         // console.log(newli);
         cart_ul.appendChild(newli);        
         
@@ -169,14 +178,19 @@ function showCartItem (SQLQuery)
 }
 
 //Функция создает текст верстки для списка товаров в корзине
-function writeTextli (name, price, color, quantity, img){
+function writeTextli (name, price, color, quantity, img, total_price){
     var html_text = "";
     
     html_text += `<img src='${img}' alt='Man in hoody' width='262' height='306' class='cart__list-img'>`;
     html_text += "<div class='cart__list-wrapper'>";
     html_text +=      `<h3 class='cart__list-heading'>${name}</h3>`;
     html_text +=      '<div class="cart__list-close"></div>';
-    html_text +=      `<p class='cart__list-text'>Цена: <span class='cart__price'>${price}</span></p>`;
+    if (total_price){
+      html_text +=      `<p class='cart__list-text'>Цена: <span class='cart__price'>${total_price}</span></p>`;
+    }      
+    else{
+      html_text +=      `<p class='cart__list-text'>Цена: <span class='cart__price'>${price}</span></p>`;
+    }
     html_text +=      `<p class='cart__list-text'>Цвет: ${color}</p>`;                    
     html_text +=      "<div class='cart__list-subwrapper'>"
     html_text +=          "<label class='cart__list-text'>Количество:</label>"
@@ -229,13 +243,21 @@ function getSendText(SQLdata) {
   var whatsapp_text = "Привет, я хочу сделать заказ на сайте visokomerie.ru: " + "\n";
   for (var items in localStorageData){
     if(localStorageData.hasOwnProperty(items)){
-      var product_name = SQLdata[items]['name'];
-      var price        = SQLdata[items]['price'];
-      var quantity     = localStorageData[items][1];        
-      var color        = SQLdata[items]['product_color'];
+      var product_name   = SQLdata[items]['name'];
+      var price          = SQLdata[items]['price'];
+      var quantity       = localStorageData[items][1];        
+      var color          = SQLdata[items]['product_color'];
+      var prodTotalPrice = SQLdata[items]['total_price'];
 
-      email_text += "- " + product_name + " " + color + " Количество: " + quantity + " Цена: " + price + ";<br>";
-      whatsapp_text += "- " + product_name + " " + color + " Количество: " + quantity + " Цена: " + price + ";\n";
+      if (prodTotalPrice)
+      {
+        email_text += "- " + product_name + " " + color + " Количество: " + quantity + " Цена: " + prodTotalPrice + ";<br>";
+        whatsapp_text += "- " + product_name + " " + color + " Количество: " + quantity + " Цена: " + prodTotalPrice + ";\n";
+      }else{
+        email_text += "- " + product_name + " " + color + " Количество: " + quantity + " Цена: " + price + ";<br>";
+        whatsapp_text += "- " + product_name + " " + color + " Количество: " + quantity + " Цена: " + price + ";\n";
+      }
+
     }
   }
   email_text+="Имя клиента: " + getNameStr.value + "<br>" + "Телефон :" + getPhoneStr[0].value;

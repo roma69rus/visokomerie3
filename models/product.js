@@ -77,12 +77,14 @@ class Product {
     });
   }
   getCartProductsByID(ids_array) {
-    const DBquery = 'select po.id, p.name, po.product_color, p.price + po.price_increase as price, poi.img_path ' +
+    const DBquery = 'select po.id, p.name, po.product_color, p.price + po.price_increase as price, poi.img_path, d.discount_percent, (p.price + po.price_increase)/100*(100-d.discount_percent) as total_price ' +
       'from product p ' +
       'left join product_options po ' +
       'on po.product_id = p.id ' +
       'left join product_options_image poi ' +
       'on poi.option_id = po.id ' +
+      'left join discount d ' +
+      'on d.option_id = po.id ' +
       'where po.price_increase is not null and poi.main_image = "1" and po.id IN (' + ids_array.join(',') + ')'; //+ id + '"' 
     return new Promise((resolve, reject) => {
       if (ids_array.length != 0) {

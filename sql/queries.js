@@ -1,17 +1,20 @@
 exports.MainPageProducts = `
-  select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.img_path, img.main_image, p.slug, opt.color_slug 
+  select opt.id, p.name, p.price + opt.price_increase as price, opt.product_color, img.img_path, img.main_image, p.slug, opt.color_slug, d.discount_percent, (p.price + opt.price_increase)/100*(100-d.discount_percent) as total_price
   from product_options opt  
   left join product p  
   on p.id = opt.product_id  
   left join product_options_image img  
   on opt.id = img.option_id  
+  left join discount d 
+  on opt.id = d.option_id  
   where img.main_image = "1" and p.id in  
       (select p.id  
       from product p, product_category pc, products_to_categories ptc  
       where pc.id = ptc.category_id  
       and ptc.product_id = p.id  
       and pc.name = "Брюки") 
-  order by opt.po_order`
+  order by opt.po_order
+`
   
 exports.CatalogCategories = `
   select pc.id, pc.name, pc.description, pc.isEven 
@@ -22,7 +25,7 @@ exports.Slider = `select * from slider ORDER BY slide_order`
 
 
 exports.CatalogAllProducts = `
-  select ptc.category_id, po.id as product_id, p.name, po.product_color, p.price + po.price_increase as price, poi.img_path, p.slug, po.color_slug, po.label 
+  select ptc.category_id, po.id as product_id, p.name, po.product_color, p.price + po.price_increase as price, poi.img_path, p.slug, po.color_slug, po.label, d.discount_percent, (p.price + po.price_increase)/100*(100-d.discount_percent) as total_price
   from product p 
   left join products_to_categories ptc 
   on ptc.product_id = p.id 
@@ -30,15 +33,19 @@ exports.CatalogAllProducts = `
   on po.product_id = p.id 
   left join product_options_image poi 
   on poi.option_id = po.id 
+  left join discount d 
+  on d.option_id = po.id 
   where po.price_increase is not null and poi.main_image = "1" 
 `;
 
 exports.Product = 
   `
-  select po.product_id, po.id as option_id, p.name, p.price + po.price_increase as price, po.product_color, po.description, p.sizetable_path, po.color_slug 
+  select po.product_id, po.id as option_id, p.name, p.price + po.price_increase as price, po.product_color, po.description, p.sizetable_path, po.color_slug, d.discount_percent, (p.price + po.price_increase)/100*(100-d.discount_percent) as total_price
   from product_options po 
   left join product p 
   on po.product_id = p.id 
+  left join discount d 
+  on d.option_id = po.id 
   where po.color_slug = ? and p.slug = ?
   `;
 
