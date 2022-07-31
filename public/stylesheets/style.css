@@ -2549,3 +2549,9 @@ ol, ul {
   text-transform: lowercase;
 }
 
+.featured__heading.nm{
+  margin-top: 0;
+}
+.featured__heading.bold{
+  font-weight: bold;
+}

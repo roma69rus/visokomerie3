@@ -55,4 +55,17 @@ exports.productImages = (name, color) =>{
   return query
 } ;
 
+exports.Discount =`
+  select po.id, p.name, p.price + po.price_increase as price, po.product_color, poi.img_path, poi.main_image, p.slug, po.color_slug, d.discount_percent, (p.price + po.price_increase)/100*(100-d.discount_percent) as total_price
+  from product_options po
+  left join product_options_image poi 
+  on po.id = poi.option_id 
+  left join discount d 
+  on d.option_id = po.id 
+  left join product p 
+  on p.id = po.product_id 
+  where poi.main_image = 1 and d.option_id is not null
+  `
+
+
   
