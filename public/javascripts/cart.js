@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
           e.preventDefault();
         })
       } else {
-        sendEmail(getSendText(result).get("email"), getPhoneStr[0].value);     
+        sendEmail(getSendText(result).get("email"), getPhoneStr[0].value);   
         OpenWhatsappModal (this, getSendText(result).get("whatsapp"))
       } 
     });
@@ -230,9 +230,7 @@ function sendEmail(mailText, subjecttext) {
     From : "admin@visokomerie.ru",
     Subject : subjecttext,
     Body : mailText
-  })//.then(
-    //OpenWhatsappModal (this)
-  //); 
+  })
 }
 
 // Функция, которая генерирует текст для Email Whatsapp
