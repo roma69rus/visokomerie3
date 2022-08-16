@@ -2,9 +2,6 @@
 
 Магазин для продажи одежды [visokomerie.com](https://visokomerie.ru/)
 
-![visokomerie](https://user-images.githubusercontent.com/22370622/173572199-db60551a-badd-48e9-8c48-454f9bd76e64.gif)
-
-
 
 https://user-images.githubusercontent.com/22370622/184851880-590b892c-e594-42a5-abcf-6859489fa279.MP4
 
