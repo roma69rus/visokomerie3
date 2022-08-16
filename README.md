@@ -5,8 +5,6 @@
 ![visokomerie](https://user-images.githubusercontent.com/22370622/173572199-db60551a-badd-48e9-8c48-454f9bd76e64.gif)
 
 
-https://user-images.githubusercontent.com/22370622/184847183-264e73e2-1165-492f-a0cb-ae231d95709b.MP4
-
 
 ## Исходные основные ФТТ
 1. ✅ Адаптивная верстка (упор на мобильные устройства) 
